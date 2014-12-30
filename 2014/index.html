@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>2014年总结</title>
+		<meta name="description" content="2014年总结" />
+		<meta name="keywords" content="2014 总结 infoq oschina" />
+		<meta name="author" content="Peter Zhang" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/2014.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<script type="text/javascript" src="js/modernizr.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<section id="photostack-2014" class="photostack">
+				<div id="makeItDifferents">
+
+				</div>
+			</section>
+            <section class="description">
+                <P>谁不曾为梦想而拼搏</P>
+                <p>多少个<strong>日日夜夜</strong></p>
+                <p>Titanium, CocoonJS, MelonJS, Cocos2D</p>
+                <p>CreateJS, TiledMap, NodeJS, Pomelo</p>
+                <p>Express, Opera游戏引擎, html5dw, Phonegap</p>
+                <p>仍然记忆犹新</p>
+                <p>与朋友头脑风暴</p>
+                <p>游戏, 新闻APP, 物流, 电视</p>
+                <p>太多太多</p>
+                <p>身心疲惫</p>
+                <p>4月进入易到大家庭</p>
+                <p>在这里我们改变人民的出行方式</p>
+                <p>APP由5.1.5升到了6.0</p>
+                <p>车辆动画</p>
+                <p>派单等待动画</p>
+                <p>优化了图片存储</p>
+                <p>登录图片验证码</p>
+                <p>当面付</p>
+                <p>计费粒度</p>
+                <p>优惠券</p>
+                <p>发票</p>
+                <p>设备黑名单</p>
+                <p>评价改版</p>
+                <p>附近车辆</p>
+                <p>微信活动</p>
+                <p>支付重构</p>
+                <p>首页发现频道</p>
+                <p>PHP扩展</p>
+                <p>城市支持汉语拼音</p>
+                <p>替换Redia</p>
+                <p>Code Review</p>
+                <p>提升ERP性能</p>
+                <p>开通了100个中外城市</p>
+                <p>每日完成订单超过了2万</p>
+                <p>试乘试驾、微代驾</p>
+                <p>搭车</p>
+                <p>读了《架构设计》</p>
+                <p>《GoLong》</p>
+                <p>这一年</p>
+                <p>众多人步入了婚姻的殿堂</p>
+                <p>这一年</p>
+                <p>苹果发布了iPhone6</p>
+                <p>Android迎来了5.0</p>
+                <p>这一年</p>
+                <p>互联网思维来了</p>
+                <P>传统与互联网的结合</P>
+                <p>硬件与软件的结合</p>
+                <p>线上与线下的结合</p>
+                <p>世界即将改变</p>
+                <p>Peter 写于2014年12月31日</p>
+            </section>
+		</div><!-- /container -->
+        <script type="text/template" id="makeItDifferents-template">
+            <%var i = 0;%>
+            <%_.each(makeItDifferents, function(makeItDifferent) {%>
+                <%if(i < 100) {%>
+                <figure>
+                    <a href="#" class="photostack-img">
+                        <img src="images/<%=makeItDifferent%>" alt=""/>
+                    </a>
+                    <figcaption>
+                        <h2 class="photostack-title">易到用车</h2>
+                        <div class="photostack-back">
+                            <p>易到用车</p>
+                        </div>
+                    </figcaption>
+                </figure>
+                <%} else {%>
+                <figure data-dummy>
+                    <a href="#" class="photostack-img">
+                        <img src="images/<%=makeItDifferent%>" alt=""/>
+                    </a>
+                    <figcaption>
+                        <h2 class="photostack-title">易到用车</h2>
+                    </figcaption>
+                </figure>
+                <%}%>
+                <%i++;%>
+            <%});%>
+        </script>
+        <script type="text/javascript" src="js/zepto.js"></script>
+        <script type="text/javascript" src="js/underscore.js"></script>
+		<script type="text/javascript" src="js/classie.js"></script>
+		<script type="text/javascript" src="js/photostack.js"></script>
+		<script type="text/javascript">
+            var makeItDifferents = [];
+            var wonderful = 48;
+            for(var i = 0 ; i <= wonderful ; i++) {
+                if(i == 0) {
+                    makeItDifferents.push("0.jpeg");
+                } else {
+                    makeItDifferents.push("0 (" + i + ").jpeg");
+                }
+            }
+
+            var html = "";
+            html = _.template($("#makeItDifferents-template").html(), {makeItDifferents: makeItDifferents});
+            $("#makeItDifferents").html(html);
+
+
+            // [].slice.call( document.querySelectorAll( '.photostack' ) ).forEach( function( el ) { new Photostack( el ); } );
+            new Photostack( document.getElementById( 'photostack-2014' ), {
+                callback : function( item ) {
+                    //console.log(item)
+                }
+            });
+		</script>
+	</body>
+</html>
