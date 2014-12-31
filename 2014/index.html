@@ -135,6 +135,93 @@
                     //console.log(item)
                 }
             });
+
+            function onBridgeReady() {
+                WeixinJSBridge.call('showOptionMenu');
+            }
+
+            if (typeof WeixinJSBridge == "undefined") {
+                if(document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+            } else {
+                onBridgeReady();
+            }
+
+            //app分享
+            (function() {
+                var page_title = "2014年总结";
+                var page_current_url = document.location.href;
+                var page_img = "http://zhangchunsheng.github.io/summary/2014/images/icon.jpeg";
+                var page_desc = "2014年总结";
+
+                var dataForWeixin={
+                    appId:"",
+                    MsgImg:page_img,
+                    TLImg:page_img,
+                    url:page_current_url,
+                    title:page_title,
+                    desc:page_desc,
+                    fakeid:"",
+                    callback:function(){}
+                };
+                var onBridgeReady=function(){
+                    WeixinJSBridge.on('menu:share:appmessage', function(argv){
+                        WeixinJSBridge.invoke('sendAppMessage',{
+                            "appid":dataForWeixin.appId,
+                            "img_url":dataForWeixin.MsgImg,
+                            "img_width":"120",
+                            "img_height":"120",
+                            "link":dataForWeixin.url,
+                            "desc":dataForWeixin.desc,
+                            "title":dataForWeixin.title
+                        }, function(res){(dataForWeixin.callback)();});
+                        if($('.mask,.navtips')) {
+                            $('.mask,.navtips').remove();
+                        }
+                    });
+                    WeixinJSBridge.on('menu:share:timeline', function(argv){
+                        (dataForWeixin.callback)();
+                        WeixinJSBridge.invoke('shareTimeline',{
+                            "img_url":dataForWeixin.TLImg,
+                            "img_width":"120",
+                            "img_height":"120",
+                            "link":dataForWeixin.url,
+                            "desc":"2014年总结",
+                            "title":"2014年总结"
+                        }, function(res){});
+                        if($('.mask,.navtips')) {
+                            $('.mask,.navtips').remove();
+                        }
+                    });
+                    WeixinJSBridge.on('menu:share:weibo', function(argv){
+                        WeixinJSBridge.invoke('shareWeibo',{
+                            "content":dataForWeixin.title,
+                            "url":dataForWeixin.url
+                        }, function(res){(dataForWeixin.callback)();});
+                    });
+                    WeixinJSBridge.on('menu:share:facebook', function(argv){
+                        (dataForWeixin.callback)();
+                        WeixinJSBridge.invoke('shareFB',{
+                            "img_url":dataForWeixin.TLImg,
+                            "img_width":"120",
+                            "img_height":"120",
+                            "link":dataForWeixin.url,
+                            "desc":dataForWeixin.desc,
+                            "title":dataForWeixin.title
+                        }, function(res){});
+                    });
+                };
+                if(document.addEventListener){
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                }else if(document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady'   , onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady' , onBridgeReady);
+                }
+            })();
 		</script>
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -144,7 +231,6 @@
 
             ga('create', 'UA-31588662-6', 'auto');
             ga('send', '2014');
-
         </script>
 	</body>
 </html>
