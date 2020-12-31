@@ -20,7 +20,7 @@
 
     export default {
         name: 'summary-2020',
-        title: 'Pagination / Dynamic bullets',
+        title: 'Summary 2020',
         components: {
             Swiper,
             SwiperSlide
