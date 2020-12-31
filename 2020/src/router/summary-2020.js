@@ -3,8 +3,7 @@ export default [
     path: '/',
     name: 'summary',
     components: {
-      default: () => import('@/views/summary/summary-2020'),
-      tabbar: Tabbar
+      default: () => import('@/views/summary/summary-2020')
     },
     meta: {
       keepAlive: true
